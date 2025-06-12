@@ -7,9 +7,9 @@ An operating system made with only python
 
 - `clear`: Clears the screen.
 
-- `ls`: Lists all file(In this version, it will display all folders and files with showing where is the folder parent path).
+- `ls`: Lists all files (In this version, it will display all folders and files with showing where is the folder parent path).
 
-- `mkdir <dir_path>/<directory_name>`: Create a directory with the selected name by the user(dir_path/ is optional).
+- `mkdir <dir_path>/<directory_name>`: Create a directory with the selected name by the user (dir_path/ is optional).
 
 - `shutdown`: Shutdowns the running system.
 
