@@ -1,5 +1,6 @@
 # pyOS
-An operating system made with only python
+An OS(Operating System) made with only Python
+Version: 0.1.0
 
 ## Commands
 ---
