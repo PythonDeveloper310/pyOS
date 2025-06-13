@@ -18,6 +18,6 @@ Version: 0.1.0
 ---
 ```bash
 git clone https://github.com/PythonDeveloper310/pyOS
-cd path/to/pyOS
+cd pyOS
 python3 main.py
 ```
