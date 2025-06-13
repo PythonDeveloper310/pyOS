@@ -1,1 +1,0 @@
-sys_homedir = "System/Filesystem/pyfs/home"
