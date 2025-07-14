@@ -1,5 +1,5 @@
 import pygame as pg
-from src.source import *
+from src.utilities import *
 
 pg.init()
 dx, dy = 1366, 768
@@ -12,7 +12,7 @@ pg.mouse.set_visible(False)
 clock = pg.time.Clock()
 tick = 60*2
 
-def start_desktop(kernel):
+def start_desktop():
     import time
 
     running = True
@@ -51,6 +51,9 @@ def start_desktop(kernel):
                         elif ev.key == pg.K_e:
                             is_circle = False
                             is_triangle = True
+                        elif ev.key == pg.K_w:
+                            is_circle = False
+                            is_triangle = False
         clear_screen(display)
         if is_circle and not is_triangle:
             Draw(display).clear()
@@ -58,6 +61,8 @@ def start_desktop(kernel):
         elif not is_circle and is_triangle:
             Draw(display).clear()
             Draw(display).triangle((dx//2, dy//2 - 50), (dx//2 - 50, dy//2 + 50), (dx//2 + 50, dy//2 + 50), WHITE)
+        else:
+            blit_center(display, pylogo, dx, dy)
 
         print_string(display, f"pyOS Desktop Test, FPS: {clock.get_fps() :.0f}", WHITE, 32)
         print_string(display, "Press 'ESC' to exit.", WHITE)

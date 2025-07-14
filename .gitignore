@@ -1,2 +1,6 @@
-__pycache__/*
+# Folders
+__pycache__/
 src/apps/*
+
+# Files
+*.pyc

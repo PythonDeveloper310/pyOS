@@ -3,5 +3,3 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 Shell
 Icons on desktop
-
-# I'm not that good on pygame but i'm trying, also ChatGPT helped me too #
