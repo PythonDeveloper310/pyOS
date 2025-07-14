@@ -16,11 +16,11 @@ python run.py
 <h1>
   Screenshots:
   <img src="screenshots/Screenshot (1).png">
-  <img src="screenshots/Screenshot (2).png">
-  <img src="screenshots/Screenshot (3).png">
-  <img src="screenshots/Screenshot (4).png">
-  <img src="screenshots/Screenshot (5).png">
-  <img src="screenshots/Screenshot (6).png">
+  <img src="screenshots/Screenshot (7).png">
+  <img src="screenshots/Screenshot (8).png">
+  <img src="screenshots/Screenshot (9).png">
+  <img src="screenshots/Screenshot (10).png">
+  <img src="screenshots/Screenshot (11).png">
   <br>
 </h1>
 
