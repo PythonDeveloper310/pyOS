@@ -4,6 +4,8 @@ A Python operating system with a desktop using the 'pygame' module
 ---
 pyOS has a desktop with the size of 1366x768, pygame will set to fullscreen but if you have big screen you have to set it manually.
 
+Working on icons and names, also use ChatGPT a bit.
+
 Installation, Setup and Running:
 ---
 ```sh

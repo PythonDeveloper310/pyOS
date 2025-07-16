@@ -8,6 +8,7 @@ RED = pg.Color(255,0,0)
 YELLOW = pg.Color(255,255,0)
 WHITE = pg.Color(255,255,255)
 GRAY = pg.Color(128,128,128)
+BLUE = pg.Color(0,0,255)
 
 current_color = BLACK
 
@@ -19,28 +20,28 @@ def reset_prev_rects():
     global previous_rects
     previous_rects = []
 
-def print_string(screen: pg.Surface, string: str, color: pg.Color, tsize: int = 24, pos=(6, 6)):
+def print_string(screen: pg.Surface, string: str, color: pg.Color = WHITE, tsize: int = 32, pos=(6, 6), back_color=BLACK):
     global previous_rects
     font = pg.font.SysFont(None, tsize)
 
-    text = font.render(string, True, color)
+    text = font.render(string, True, color, back_color)
     rect = text.get_rect(topleft=pos)
     while any(rect.colliderect(prev) for prev in previous_rects):
         rect.y += tsize
     previous_rects.append(rect)
     screen.blit(text, rect)
 
-def print_to_pos(screen: pg.Surface, string: str, color: pg.Color, pos=(6, 6), tsize: int = 24):
+def print_to_pos(screen: pg.Surface, string: str, color: pg.Color = WHITE, pos=(6, 6), tsize: int = 32, back_color=BLACK):
     font = pg.font.SysFont(None, tsize)
 
-    text = font.render(string, True, color)
+    text = font.render(string, True, color, back_color)
     rect = text.get_rect(topleft=pos)
     screen.blit(text, rect)
 
-def print_center(screen: pg.Surface, string: str, color: pg.Color, screen_x, screen_y, tsize: int = 42):
+def print_center(screen: pg.Surface, string: str, screen_x, screen_y, color: pg.Color = WHITE, tsize: int = 42, back_color=BLACK):
     font = pg.font.SysFont(None, tsize)
 
-    text = font.render(string, True, color)
+    text = font.render(string, True, color, back_color)
     rect = text.get_rect(center=(screen_x//2, screen_y//2))
     screen.blit(text, rect)
 
@@ -51,6 +52,8 @@ def blit_image(screen: pg.Surface, image_file_or_surface, pos=(0, 0)):
         else image_file_or_surface
     )
     rect = image.get_rect(topleft=pos)
+    while any(rect.colliderect(prev) for prev in previous_rects):
+        rect.y += rect.height
     screen.blit(image, rect)
     return rect
 
@@ -66,7 +69,7 @@ def blit_center(screen: pg.Surface, image_file_or_surface, screen_x, screen_y):
 
 
 def newline(screen: pg.Surface):
-    print_string(screen, "NEWLINE", current_color)
+    print_string(screen, "NEWLINE", current_color, tsize=24)
 
 
 def black(screen: pg.Surface):
@@ -107,10 +110,10 @@ def setbg(screen: pg.Surface, bg_file):
 def exit_desktop(screen: pg.Surface, tick: int):
     import time as t
 
-    for _ in range(tick//100):
+    for _ in range(2):
         for dots in [".", "..", "..."]:
             black(screen)
-            print_center(screen, f"Exiting Desktop{dots}", WHITE, screen.get_width(), screen.get_height(), 48)
+            print_center(screen, f"Exiting Desktop{dots}", screen.get_width(), screen.get_height(), WHITE, 48)
             pg.display.flip()
             t.sleep(0.4)
 
