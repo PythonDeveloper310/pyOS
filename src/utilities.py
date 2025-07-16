@@ -30,6 +30,13 @@ def print_string(screen: pg.Surface, string: str, color: pg.Color, tsize: int = 
     previous_rects.append(rect)
     screen.blit(text, rect)
 
+def print_to_pos(screen: pg.Surface, string: str, color: pg.Color, pos=(6, 6), tsize: int = 24):
+    font = pg.font.SysFont(None, tsize)
+
+    text = font.render(string, True, color)
+    rect = text.get_rect(topleft=pos)
+    screen.blit(text, rect)
+
 def print_center(screen: pg.Surface, string: str, color: pg.Color, screen_x, screen_y, tsize: int = 42):
     font = pg.font.SysFont(None, tsize)
 
@@ -37,15 +44,26 @@ def print_center(screen: pg.Surface, string: str, color: pg.Color, screen_x, scr
     rect = text.get_rect(center=(screen_x//2, screen_y//2))
     screen.blit(text, rect)
 
-def blit_image(screen: pg.Surface, image_file, pos=(0, 0)):
-    image = pg.image.load(image_file)
+def blit_image(screen: pg.Surface, image_file_or_surface, pos=(0, 0)):
+    image = (
+        pg.image.load(image_file_or_surface).convert_alpha()
+        if isinstance(image_file_or_surface, str)
+        else image_file_or_surface
+    )
     rect = image.get_rect(topleft=pos)
     screen.blit(image, rect)
+    return rect
 
-def blit_center(screen: pg.Surface, image_file, screen_x, screen_y):
-    image = pg.image.load(image_file)
-    rect = image.get_rect(center=(screen_x//2, screen_y//2))
+def blit_center(screen: pg.Surface, image_file_or_surface, screen_x, screen_y):
+    image = (
+        pg.image.load(image_file_or_surface).convert_alpha()
+        if isinstance(image_file_or_surface, str)
+        else image_file_or_surface
+    )
+    rect = image.get_rect(center=(screen_x // 2, screen_y // 2))
     screen.blit(image, rect)
+    return rect
+
 
 def newline(screen: pg.Surface):
     print_string(screen, "NEWLINE", current_color)
@@ -86,7 +104,17 @@ def setbg(screen: pg.Surface, bg_file):
     bg = pg.transform.scale(bg, (1366, 768))
     screen.blit(bg, (0,0))
 
-class Draw():
+def exit_desktop(screen: pg.Surface, tick: int):
+    import time as t
+
+    for _ in range(tick//100):
+        for dots in [".", "..", "..."]:
+            black(screen)
+            print_center(screen, f"Exiting Desktop{dots}", WHITE, screen.get_width(), screen.get_height(), 48)
+            pg.display.flip()
+            t.sleep(0.4)
+
+class DrawShape():
     def __init__(self, screen: pg.Surface):
         self.screen = screen
         self.previous_rects = []
